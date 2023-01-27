@@ -1,13 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent() }} | Dodaj notkę {% endblock %}
+{% block title %} {{ parent() }}{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="d-inline me-3">Tytuł</h1> <i class="fas fa-edit"></i>
-        <div class="row mt-5">
-            <div class="col-12 col-md-8 ps-5">
-                <button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Dodaj notkę</button>
+    <div class="container text-center" >
+        <div class="row" >
+            <div class="login-form mt-4 p-4" style="background-color: #27333A;">
+                <form action="{{ path('app_savenote') }}"  method="post" class="row g-3">
+                    <h1 class="h3 mb-3 font-weight-normal">Dodaj notatkę:</h1>
+
+                    <div class="col-12">
+                    </div>
+                    <div class="col-12">
+                        <input type="text" id="title" name="title" style="width:50%; height: 50px;" placeholder="Wpisz tytuł notatki">
+                    </div>
+                    <div class="col-12">
+                        <textarea type="textarea" id="noteContent" name="noteContent" style="width:50%; height: 200px;" placeholder="Wpisz treść notatki"></textarea>
+                    </div>
+
+                    <div>
+                        <a>
+                            <button class="btn btn-success"><i class="fas fa-plus" type="submit"></i> Dodaj notatkę</button>
+                        </a>
+                    </div>
+                    <br>
+                </form>
+                <br>
+                <div>
+                    <a href="{{ path('app_browse') }}">
+                        <button class="btn btn-warning"> Przeglądaj notatki </button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

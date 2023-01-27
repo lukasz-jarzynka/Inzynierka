@@ -2,38 +2,42 @@
 
 {% block body %}
     <div class="container">
-        <h1>{{ mainTitle }}</h1>
-
-        <h2 class="mt-5 mb-4">Filtruj :</h2>
-        <ul class="note-list ps-0 mt-2 mb-3">
-            <li class="d-inline">
-                <a class="btn btn-primary btn-sm" href="#">Filtr 1</a>
-            </li>
-            <li class="d-inline">
-                <a class="btn btn-primary btn-sm" href="#">Filtr 2</a>
-            </li>
-            <li class="d-inline">
-                <a class="btn btn-primary btn-sm" href="#">Filtr 3</a>
-            </li>
-        </ul>
+        <h1>{{ title }}</h1>
+        <br>
         <div>
-            <h2 class="mt-5">Notatki</h2>
+            <a href="{{ path('app_addnote') }}">
+                <button class="btn btn-success"><i class="fas fa-plus"></i> Dodaj notatkę</button>
+            </a>
+        </div>
+        <div class="login-form mt-4 p-4" style="background-color: #27333A;">
+            <h2 class="mt-6">Notatki:</h2>
             <div class="row">
-                <ul>
-                    {% for note in notes %}
-                        <div class="col col-md-4 ">
-                            <div class="note-container p-3 text-center ">
-                                {{ note.title }}
-                                <br>
-                                {{ note.noteContent }}
+                    {% if is_granted('ROLE_USER') %}
+                        {% for note in notes %}
+                            <div class="col-3 mb-5" >
+                                <div class="card border-success mb-3" style="max-width: 18rem;">
+                                    <div class="card-body text-success">
+                                        <h5 class="card-title text-center font-weight-bold" style="color: #000000">{{ note.title }}</h5>
+                                        <p class="card-text font-weight-normal" style="color: #27333A">{{ note.noteContent }}</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success" style="color: #27333A;">Utworzono: {{ note.createdAt|ago }}</div>
+                                </div>
                                 <div>
-                                    <br>
-                                    Utworzono: <p class="mt-2"><strong>{{ note.createdAt|ago }}</strong></p>
+                                    <div>
+                                        <a href="{{ path('app_editnote', {noteId: note.id}) }}">
+                                            <button class="btn btn-warning"> Edytuj </button>
+                                        </a>
+                                        <a href="{{ path('app_deletenote', {noteId: note.id}) }}">
+                                            <button class="btn btn-danger"> Usuń </button>
+                                        </a>
+                                    </div>
+                                    <div>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </ul>
+                        {% endfor %}
+                    {% endif %}
             </div>
         </div>
     </div>

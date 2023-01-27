@@ -20,7 +20,6 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCre
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
-use function mysql_xdevapi\getSession;
 
 class LoginFormAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
 {
@@ -57,7 +56,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
                     'authenticate',
                     $request->request->get('_csrf_token')
                 ),
-                new RememberMeBadge(),
+                (new RememberMeBadge())->enable(),
             ]
         );
     }

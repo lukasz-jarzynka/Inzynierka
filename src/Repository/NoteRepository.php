@@ -51,6 +51,29 @@ class NoteRepository extends ServiceEntityRepository
         ;
     }
 
+    public function deleteUserNotesById($userId)
+    {
+        return $this->createQueryBuilder('note')
+            ->orderBy('note.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return Note[] Returns an array of Note objects
+     */
+    public function findUserNotesByCreatedAt($userId): array
+    {
+        return $this->createQueryBuilder('note')
+            ->where('note.users = :userId')
+            ->setParameter('userId', $userId)
+            ->orderBy('note.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    public function findOneBySomeField($value): ?Note
 //    {
 //        return $this->createQueryBuilder('n')

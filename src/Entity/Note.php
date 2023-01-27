@@ -32,6 +32,10 @@ class Note
     #[ORM\ManyToOne(inversedBy: 'notes')]
     private ?UserNote $userNote = null;
 
+    #[ORM\ManyToOne(inversedBy: 'note')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $users = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +72,7 @@ class Note
 
     public function setSlug(string $slug): self
     {
+
         $this->slug = $slug;
 
         return $this;
@@ -81,6 +86,18 @@ class Note
     public function setUserNote(?UserNote $userNote): self
     {
         $this->userNote = $userNote;
+
+        return $this;
+    }
+
+    public function getUsers(): ?User
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
 
         return $this;
     }

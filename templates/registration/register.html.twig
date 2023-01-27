@@ -2,6 +2,7 @@
 
 {% block title %} {{ parent() }} | Zarejestruj się do notatnika{% endblock %}
 
+
 {% block body %}
     <div class="container">
         <div class="row">
@@ -11,18 +12,19 @@
                 {{ form_row(registrationForm.firstName, {
                     label: 'Imię'
                 }) }}
-                {{ form_row(registrationForm.secondName, {
+                {{ form_row(registrationForm.lastName, {
                     label: 'Nazwisko'
                 }) }}
+
+                {{ form_row(registrationForm.email) }}
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Hasło'
                 }) }}
-                {{ form_row(registrationForm.email) }}
                 {{ form_row(registrationForm.phoneNumber, {
-                    label: 'Telefon'
+                    label: 'Numer telefonu'
                 }) }}
                 {{ form_row(registrationForm.agreeTerms, {
-                    label: 'Zaakceptuj warunki'
+                    label: 'Akceptuję warunki'
                 }) }}
                 <div class="col-12">
                     <button class="btn btn-lg btn-primary" type="submit">

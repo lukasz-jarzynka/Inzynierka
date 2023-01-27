@@ -51,7 +51,7 @@ final class NoteFactory extends ModelFactory
             'noteContent' => self::faker()->text(),
             'title' => self::faker()->words(3,true),
             'updatedAt' => self::faker()->dateTime(),
-            'userNote' => UserNoteFactory::random()
+            'users' => UserFactory::new()
         ];
     }
 

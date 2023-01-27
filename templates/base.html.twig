@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    <script src="{{ asset('scripts/app.js') }}"></script>
 
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
@@ -38,23 +39,20 @@
             </button>
             <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" style="margin-top: 20px;" href="#">Zaloguj się</a>
-                    </li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+                            <a class="nav-link">{{ app.user.firstName }} {{ app.user.lastName }}</a>
+                            <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj się</a>
+                        </li>
+                    {% else %}
+                            <a class="nav-link" style="margin-top: 20px;" href="{{ path('app_login') }}">Zaloguj się</a>
+                            <a class="nav-link" style="margin-top: 20px;" href="{{ path('app_register') }}">Zarejestruj się</a>
+                    {% endif %}
                     <!-- Not Authenticated -->
                     <!-- <li class="nav-item"><button href="#" class="btn btn-primary btn-sm">Login</button></li> -->
                     <!-- End Not Authenticated -->
 
                     <!-- If Authenticated -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user-astronaut p-2" style="border: solid 1px #fff; border-radius: 50px; font-size: 40px;"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Moje notatki</a></li>
-                            <li><a class="dropdown-item" href="#">Wyloguj się</a></li>
-                        </ul>
-                    </li>
                     <!-- End If Authenticated -->
                 </ul>
             </div>

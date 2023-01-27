@@ -1,12 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent() }} | Zaloguj się do notatnika{% endblock %}
+{% block title %} {{ parent() }}{% endblock %}
 
 {% block body %}
 
-    <div class="container">
+    <div class="container text-center">
         <div class="row">
-            <h1>{{ title }}</h1>
+            <div class="login-form mt-4 p-4" style="background-color: #27333A;">
+                {% if is_granted('ROLE_USER') %}
+                    <h1>{{ title }} </h1>
+                    <br>
+
+                    <img src="{{ asset('android-chrome-512x512.png') }}" alt="Notatnik">
+
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="login-form mt-4 p-4" style="background-color: #27333A;">
+                                <br>
+                                <div>
+                                    <a href="{{ path('app_addnote') }}">
+                                        <button class="btn btn-success"><i class="fas fa-plus"></i> Dodaj notatkę</button>
+                                    </a>
+                                </div>
+                                <br>
+                                <div>
+                                    <a href="{{ path('app_browse') }}">
+                                        <button class="btn btn-warning"> Przeglądaj notatki </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <h1>{{ title }} w notatniku! </h1>
+                    <br>
+
+                    <img src="{{ asset('android-chrome-512x512.png') }}" alt="Notatnik">
+
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="login-form mt-4 p-4" style="background-color: #27333A;">
+                                <h4 class="h3 mb-3 font-weight-normal">Zaloguj się, aby kontynuować</h4>
+                                <div class="col-12">
+                                    <a href="{{ path('app_login') }}">
+                                        <button class="btn btn-lg btn-primary">Zaloguj się</button>
+                                    </a>
+                                </div>
+                                <br>
+                                <h6 class="h3 mb-3 font-weight-normal">Nie masz konta?</h6>
+                                <p>
+                                    <a href="{{ path('app_register') }}">
+                                        <button class="btn btn-lg btn-primary">Zarejestruj się</button>
+                                    </a>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %}
+            </div>
         </div>
     </div>
 
