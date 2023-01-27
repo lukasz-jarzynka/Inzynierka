@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} | Zarejestruj się do notatnika{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>Rejestracja</h1>
+            <div class="login-form mt-4 p-4" style="background-color: #27333A;">
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.firstName, {
+                    label: 'Imię'
+                }) }}
+                {{ form_row(registrationForm.secondName, {
+                    label: 'Nazwisko'
+                }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Hasło'
+                }) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.phoneNumber, {
+                    label: 'Telefon'
+                }) }}
+                {{ form_row(registrationForm.agreeTerms, {
+                    label: 'Zaakceptuj warunki'
+                }) }}
+                <div class="col-12">
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        Zarejestruj się
+                    </button>
+                </div>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

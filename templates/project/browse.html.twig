@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ mainTitle }}</h1>
+
+        <h2 class="mt-5 mb-4">Filtruj :</h2>
+        <ul class="note-list ps-0 mt-2 mb-3">
+            <li class="d-inline">
+                <a class="btn btn-primary btn-sm" href="#">Filtr 1</a>
+            </li>
+            <li class="d-inline">
+                <a class="btn btn-primary btn-sm" href="#">Filtr 2</a>
+            </li>
+            <li class="d-inline">
+                <a class="btn btn-primary btn-sm" href="#">Filtr 3</a>
+            </li>
+        </ul>
+        <div>
+            <h2 class="mt-5">Notatki</h2>
+            <div class="row">
+                <ul>
+                    {% for note in notes %}
+                        <div class="col col-md-4 ">
+                            <div class="note-container p-3 text-center ">
+                                {{ note.title }}
+                                <br>
+                                {{ note.noteContent }}
+                                <div>
+                                    <br>
+                                    Utworzono: <p class="mt-2"><strong>{{ note.createdAt|ago }}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
