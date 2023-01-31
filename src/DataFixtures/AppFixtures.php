@@ -2,10 +2,8 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Note;
 use App\Factory\NoteFactory;
 use App\Factory\UserFactory;
-use App\Factory\UserNoteFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -21,9 +19,9 @@ class AppFixtures extends Fixture
         UserFactory::createOne([
             'email' => '2@wp.pl'
         ]);
-        UserFactory::createMany(10);
+        UserFactory::createMany(15);
 
-        NoteFactory::createMany(100, function() {
+        NoteFactory::createMany(140, function () {
             return [
                 'users' => UserFactory::random()
             ];

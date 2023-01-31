@@ -42,27 +42,6 @@ class NoteRepository extends ServiceEntityRepository
     /**
      * @return Note[] Returns an array of Note objects
      */
-    public function findAllByCreatedAt(): array
-    {
-        return $this->createQueryBuilder('note')
-            ->orderBy('note.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    public function deleteUserNotesById($userId)
-    {
-        return $this->createQueryBuilder('note')
-            ->orderBy('note.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult()
-            ;
-    }
-
-    /**
-     * @return Note[] Returns an array of Note objects
-     */
     public function findUserNotesByCreatedAt($userId): array
     {
         return $this->createQueryBuilder('note')
@@ -70,8 +49,7 @@ class NoteRepository extends ServiceEntityRepository
             ->setParameter('userId', $userId)
             ->orderBy('note.createdAt', 'DESC')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
 //    public function findOneBySomeField($value): ?Note

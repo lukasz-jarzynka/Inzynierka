@@ -40,13 +40,12 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Twoje hasło powinno mieć co najmniej {{ limit }} znaków' ,
+                        'minMessage' => 'Twoje hasło powinno mieć co najmniej {{ limit }} znaków',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

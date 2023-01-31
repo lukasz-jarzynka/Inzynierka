@@ -12,19 +12,16 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
     {
-        //Tworzenie użytkownika
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        //Hashowanie hasła przy tworzeniu
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -34,7 +31,6 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            //Zapisanie użytkownika do bazy danych
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -43,8 +39,7 @@ class RegistrationController extends AbstractController
                 $formLoginAuthenticator,
                 $request,
             );
-
-
+            
             return $this->redirectToRoute('app_homepage');
         }
 

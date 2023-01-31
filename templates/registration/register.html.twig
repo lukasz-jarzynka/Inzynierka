@@ -16,7 +16,9 @@
                     label: 'Nazwisko'
                 }) }}
 
-                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.email, {
+                    type: 'email'
+                }) }}
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Hasło'
                 }) }}

@@ -14,9 +14,7 @@ class NoteController extends AbstractController
 {
 
 
-    public function __construct(
-        private NoteRepository $noteRepository
-    )
+    public function __construct(private NoteRepository $noteRepository)
     {
 
     }
@@ -43,6 +41,7 @@ class NoteController extends AbstractController
             'title' => $message,
         ]);
     }
+
     #[Route('/saveEditedNote', name: 'app_saveeditednote')]
     public function saveEditedNote(EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -86,9 +85,7 @@ class NoteController extends AbstractController
                 $entityManager->flush();
                 $message = 'Dane zostały usunięte';
             }
-
         }
-
         return $this->render('project/homepage.html.twig', [
             'title' => $message,
         ]);
@@ -109,11 +106,9 @@ class NoteController extends AbstractController
                 $errorMessage = 'Podany obiekt nie istnieje';
             }
         }
-
         return $this->render('project/editNote.html.twig', [
             'note' => $note,
             'errorMessage' => $errorMessage,
         ]);
     }
-
 }
