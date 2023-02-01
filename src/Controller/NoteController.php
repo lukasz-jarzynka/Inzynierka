@@ -111,4 +111,13 @@ class NoteController extends AbstractController
             'errorMessage' => $errorMessage,
         ]);
     }
+
+    #[Route('/addNote', name: 'app_addnote')]
+    public function addNote()
+    {
+        return $this->render('project/addNote.html.twig');
+    }
+
+
+
 }

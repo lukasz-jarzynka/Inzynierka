@@ -33,11 +33,4 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('/addNote', name: 'app_addnote')]
-    public function addNote()
-    {
-        return $this->render('project/addNote.html.twig');
-    }
-
-
 }
