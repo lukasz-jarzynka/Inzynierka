@@ -161,7 +161,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setPlainPassword($plainPassword)
     {
-        $this->$plainPassword = $plainPassword;
+        $this->plainPassword = $plainPassword;
     }
 
     /**

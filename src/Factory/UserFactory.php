@@ -39,7 +39,6 @@ final class UserFactory extends ModelFactory
      */
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        parent::__construct();
         $this->passwordHasher = $passwordHasher;
     }
 
@@ -51,10 +50,10 @@ final class UserFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'email' => self::faker()->text(180),
+            'email' => self::faker()->email(),
             'firstName' => self::faker()->firstName(),
             'lastName' => self::faker()->lastName(),
-            'plainPassword' => 'tada',
+            'plainPassword' => 'tohero',
             'phoneNumber' => self::faker()->randomNumber(9),
             'roles' => [],
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Organizer{% endblock %}</title>
@@ -31,7 +31,7 @@
 
 <!-- Main Navigation -->
 {% block nav %}
-    <nav class="navbar navbar-expand-lg navbar-dark  mb-5" style="background-color: #27333A;">
+    <nav class="navbar navbar-expand-lg navbar-dark  {{ app.session.flashBag.peek('success')|length > 0 ? '' : 'mb-5' }}" style="background-color: #27333A;">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ path('app_homepage') }}">
                 <img src="{{ asset('favicon_note-32x32.png') }}" alt="moodle">
@@ -44,21 +44,14 @@
             <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     {% if is_granted('ROLE_USER') %}
-                        <li class="nav-item">
-                            <a class="nav-link">{{ app.user.firstName }} {{ app.user.lastName }}</a>
-                            <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj się</a>
-                        </li>
+                        <a class="nav-link" href="{{ path('app_profile') }}">{{ app.user.firstName }} {{ app.user.lastName }}</a>
+                        <a class="nav-link" href="{{ path('app_editProfile') }}">Edytuj dane</a>
+                        <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj się</a>
                     {% else %}
                         <a class="nav-link" style="margin-top: 20px;" href="{{ path('app_login') }}">Zaloguj się</a>
                         <a class="nav-link" style="margin-top: 20px;" href="{{ path('app_register') }}">Zarejestruj
                             się</a>
                     {% endif %}
-                    <!-- Not Authenticated -->
-                    <!-- <li class="nav-item"><button href="#" class="btn btn-primary btn-sm">Login</button></li> -->
-                    <!-- End Not Authenticated -->
-
-                    <!-- If Authenticated -->
-                    <!-- End If Authenticated -->
                 </ul>
             </div>
         </div>
@@ -66,6 +59,16 @@
 {% endblock %}
 <!-- End Main Navigation -->
 
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in app.flashes('fail') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
 {% block body %}
 
 {% endblock %}

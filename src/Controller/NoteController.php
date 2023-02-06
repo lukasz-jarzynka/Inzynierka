@@ -52,6 +52,7 @@ class NoteController extends AbstractController
         if (
             !$content || !$noteId
         ) {
+            $this->addFlash('fail','Nie można zapisać pustej notatki.');
             $message = 'Niepoprawne dane!';
         } else {
             $note = $this->noteRepository->find($noteId);

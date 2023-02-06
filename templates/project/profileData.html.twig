@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} | Zarejestruj się do notatnika{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>Twoje dane:</h1>
+            <div class="login-form mt-4 p-4" style="background-color: #27333A;">
+                <div>
+                    Imie : {{ firstName }}
+                </div>
+                </br>
+                <div>
+                    Nazwisko : {{ lastName }}
+                </div>
+                </br>
+                <div>
+                    Email : {{ email }}
+                </div>
+                </br>
+                <div>
+                    Telefon : {{ phoneNumber }}
+                </div>
+                </br>
+                <div>
+                    <a href="{{ path('app_editProfile') }}">
+                        <button class="btn btn-warning"><i class="fas fa-plus" type="submit" ></i>
+                            Edytuj dane
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

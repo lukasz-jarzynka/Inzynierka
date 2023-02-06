@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} | Zarejestruj się do notatnika{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>Edytuj dane:</h1>
+            <div class="login-form mt-4 p-4" style="background-color: #27333A;">
+                {{ form_start(form) }}
+                {{ form_row(form.firstName, {
+                    'label': 'Imie'
+                }) }}
+                {{ form_row(form.lastName, {
+                    'label': 'Nazwisko'
+                }) }}
+                {{ form_row(form.phoneNumber, {
+                    'label': 'Telefon'
+                }) }}
+                {{ form_row(form.oldPassword, {
+                    'label': 'Stare hasło'
+                }) }}
+                {{ form_row(form.plainPassword, {
+                    'label': 'Nowe hasło'
+                }) }}
+                <div>
+                    <a>
+                        <button class="btn btn-success">
+                            Zaktualizuj dane
+                        </button>
+                    </a>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

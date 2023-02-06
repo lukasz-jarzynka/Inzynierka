@@ -19,6 +19,7 @@ class AppFixtures extends Fixture
         UserFactory::createOne([
             'email' => '2@wp.pl'
         ]);
+
         UserFactory::createMany(15);
 
         NoteFactory::createMany(140, function () {

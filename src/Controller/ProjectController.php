@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Note;
-use App\Form\ProfileForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +15,7 @@ class ProjectController extends AbstractController
     public function homepage(): Response
     {
         return $this->render('project/homepage.html.twig', [
-            'title' => 'Witamy w notatniku',
+            'title' => 'Witamy w notatniku !',
         ]);
     }
 
