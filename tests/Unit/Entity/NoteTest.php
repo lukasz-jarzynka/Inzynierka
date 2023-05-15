@@ -10,7 +10,6 @@ class NoteTest extends TestCase
 {
     public function testCanGetAndSetData(): void
     {
-
         $user = new User();
         $user->setPassword('xxx');
         $user->setEmail('1@wp.pl');

@@ -13,10 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 class NoteController extends AbstractController
 {
 
-
     public function __construct(private NoteRepository $noteRepository)
     {
-
     }
 
     #[Route('/saveNote', name: 'app_savenote')]
