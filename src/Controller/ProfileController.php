@@ -52,15 +52,11 @@ class ProfileController extends AbstractController
     public function profileController(): Response
     {
         $userFirstName = $this->getUser()->getFirstName();
-        $userLastName = $this->getUser()->getLastName();
         $userEmail = $this->getUser()->getEmail();
-        $userPhoneNumber = $this->getUser()->getPhoneNumber();
 
         return $this->render('project/profileData.html.twig', [
             'firstName' => $userFirstName,
-            'lastName' => $userLastName,
-            'email' => $userEmail,
-            'phoneNumber' => $userPhoneNumber,
+            'email' => $userEmail
         ]);
     }
 

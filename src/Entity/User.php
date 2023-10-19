@@ -30,22 +30,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lastName = null;
-
-    #[ORM\Column]
-    private ?int $phoneNumber = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $password = null;
 
     private ?string $plainPassword = null;
 
-    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Note::class, orphanRemoval: true)]
-    private Collection $note;
-
     public function __construct()
     {
-        $this->note = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,30 +105,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getPhoneNumber(): ?int
-    {
-        return $this->phoneNumber;
-    }
-
-    public function setPhoneNumber(int $phoneNumber): self
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
     /**
      * @see PasswordAuthenticatedUserInterface
      */
@@ -162,33 +128,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
-    }
-
-    /**
-     * @return Collection<int, Note>
-     */
-    public function getNote(): Collection
-    {
-        return $this->note;
-    }
-
-    public function addNote(Note $note): self
-    {
-        if (!$this->note->contains($note)) {
-            $this->note->add($note);
-            $note->setUsers($this);
-        }
-        return $this;
-    }
-
-    public function removeNote(Note $note): self
-    {
-        if ($this->note->removeElement($note)) {
-            // set the owning side to null (unless already changed)
-            if ($note->getUsers() === $this) {
-                $note->setUsers(null);
-            }
-        }
-        return $this;
     }
 }

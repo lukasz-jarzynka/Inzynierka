@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent() }} | Zarejestruj się do notatnika{% endblock %}
+{% block title %} {{ parent() }} | Zarejestruj się {% endblock %}
 
 
 {% block body %}
@@ -12,18 +12,11 @@
                 {{ form_row(registrationForm.firstName, {
                     label: 'Imię'
                 }) }}
-                {{ form_row(registrationForm.lastName, {
-                    label: 'Nazwisko'
-                }) }}
-
                 {{ form_row(registrationForm.email, {
                     type: 'email'
                 }) }}
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Hasło'
-                }) }}
-                {{ form_row(registrationForm.phoneNumber, {
-                    label: 'Numer telefonu'
                 }) }}
                 {{ form_row(registrationForm.agreeTerms, {
                     label: 'Akceptuję warunki'

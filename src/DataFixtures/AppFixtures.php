@@ -20,13 +20,7 @@ class AppFixtures extends Fixture
             'email' => '2@wp.pl'
         ]);
 
-        UserFactory::createMany(15);
-
-        NoteFactory::createMany(140, function () {
-            return [
-                'users' => UserFactory::random()
-            ];
-        });
+        UserFactory::createMany(5);
         $manager->flush();
     }
 }

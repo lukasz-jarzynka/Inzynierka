@@ -9,7 +9,7 @@ RUN apt update \
     && docker-php-ext-install zip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get -q update && apt-get -qy install netcat \
+RUN apt-get -q update && apt-get -qy install netcat-traditional \
     jpegoptim optipng pngquant gifsicle webp \
     imagemagick libfreetype6-dev libjpeg62-turbo-dev libgd-dev libjpeg-dev libpng-dev libwebp-dev libonig-dev libxpm-dev \
     libmagickwand-dev libxml2-dev libxslt-dev \

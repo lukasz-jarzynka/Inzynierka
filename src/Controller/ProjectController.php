@@ -15,21 +15,7 @@ class ProjectController extends AbstractController
     public function homepage(): Response
     {
         return $this->render('project/homepage.html.twig', [
-            'title' => 'Witamy w notatniku !',
+            'title' => 'Siemanko !',
         ]);
     }
-
-    #[Route('/browse', name: 'app_browse')]
-    public function browse(EntityManagerInterface $entityManager): Response
-    {
-        $userId = $this->getUser()->getId();
-        $notesRepository = $entityManager->getRepository(Note::class);
-        $notes = $notesRepository->findUserNotesByCreatedAt($userId);
-
-        return $this->render('project/browse.html.twig', [
-            'title' => 'Przejrzyj notatki',
-            'notes' => $notes,
-        ]);
-    }
-
 }
